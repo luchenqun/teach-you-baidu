@@ -55,6 +55,10 @@
     background-image: -o-linear-gradient(#fff, rgba(255, 255, 255, 0) 100%);
     background-image: linear-gradient(#ffffff, rgba(255, 255, 255, 0) 100%);
 }
+#short_url {
+    height: 24px;
+    font-size: 15px;
+}
 .link {
     margin-top: 100px;
     display: block;
@@ -62,13 +66,13 @@
 a.link_button {
     display: inline-block;
     width: 60px;
-    height: 20px;
-    line-height: 20px;
-    margin: 0 2px;
+    height: 30px;
+    line-height: 28px;
+    margin-left:7px;
     background-color: #1532c9;
     color: white;
     text-align: center;
-    font-size: 0.8em;
+    font-size: 16px;
     text-decoration: none;
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;

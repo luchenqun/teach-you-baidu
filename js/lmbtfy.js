@@ -5,6 +5,7 @@ $(document).ready(function() {
     var clipboard = new Clipboard('#copy');
     clipboard.on('success', function(e) {
         toastr.success('短地址：' + e.text + '<br/>已复制到您的剪切板', "提示");
+        $('#short_url').val(e.text).focus().select();
         e.clearSelection();
     });
 
@@ -19,10 +20,12 @@ $(document).ready(function() {
             $.get('https://auth.bangbang93.com/sina/short_url.php?url=' + link, function(data) {
                 if (data) {
                     link = data['url_short'];
+                    $('#link').show();
+                    $('#instructions').text('复制下面的地址');
+                    $('#short_url').val(link).focus().select();
+                } else {
+                    toastr.error('获取短地址出错。', "提示");
                 }
-                $('#link').show();
-                $('#instructions').text('复制下面的地址');
-                $('#short_url').val(link).focus().select();
             });
         } else {
             toastr.error('您要先输入搜索关键字！', "提示");
@@ -79,7 +82,7 @@ $(document).ready(function() {
                             $instructions.html('这对你而言就是这么困难么？');
 
                             setTimeout(function() {
-                                $instructions.html('<strong>见证奇迹的时刻到了！</strong>');
+                                $instructions.html("<strong style='color:#FF0000'>==========见证奇迹的时刻到了==========</strong>");
                             }, 1000);
 
                             setTimeout(function() {
