@@ -2,6 +2,8 @@
  * Created by bangbang on 14/10/10.
  */
 $(document).ready(function() {
+    var teaching = false;
+
     var clipboard = new Clipboard('#copy');
     clipboard.on('success', function(e) {
         toastr.success('短地址：' + e.text + '<br/>已复制到您的剪切板', "提示");
@@ -14,6 +16,9 @@ $(document).ready(function() {
     });
 
     $('#search').on('click', function() {
+        if (teaching) {
+            toastr.error('专心看教程！', "提示");
+        }
         var ky = $('#kw').val();
         if (ky) {
             if(ky.length >= 80){
@@ -52,6 +57,7 @@ $(document).ready(function() {
     });
 
     if (!!window.location.search) {
+        teaching = true;
         var kw = decodeURIComponent(window.location.search.substr(1));
         var $instructions = $('#instructions');
         var $arrow = $('#arrow');
