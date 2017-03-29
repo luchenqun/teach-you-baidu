@@ -18,6 +18,7 @@ $(document).ready(function() {
     $('#search').on('click', function() {
         console.log('teaching = ', teaching);
         if (teaching) {
+            toastr.clear();
             toastr.error('专心看教程！', "提示");
             return;
         }
