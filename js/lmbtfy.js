@@ -16,17 +16,23 @@ $(document).ready(function() {
     $('#search').on('click', function() {
         var ky = $('#kw').val();
         if (ky) {
-            var link = 'http://let-me-teach-you-baidu.luchenqun.com/?' + encodeURIComponent(ky);
-            $.get('https://auth.bangbang93.com/sina/short_url.php?url=' + link, function(data) {
-                if (data) {
-                    link = data['url_short'];
-                    $('#link').show();
-                    $('#instructions').text('复制下面的地址');
-                    $('#short_url').val(link).focus().select();
-                } else {
-                    toastr.error('获取短地址出错。', "提示");
-                }
-            });
+            if(ky.length >= 80){
+                $('#kw').val('');
+                toastr.error('您输入的字符过长，请重新输入！', "提示");
+            } else {
+                var link = 'http://let-me-teach-you-baidu.luchenqun.com/?' + encodeURIComponent(ky);
+                $.get('https://auth.bangbang93.com/sina/short_url.php?url=' + link, function(data) {
+                    if (data) {
+                        link = data['url_short'];
+                        $('#link').show();
+                        $('#instructions').text('复制下面的地址');
+                        $('#short_url').val(link).focus().select();
+                        toastr.clear();
+                    } else {
+                        toastr.error('获取短地址出错。', "提示");
+                    }
+                });
+            }
         } else {
             toastr.error('您要先输入搜索关键字！', "提示");
         }
