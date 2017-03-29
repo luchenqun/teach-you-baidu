@@ -81,6 +81,10 @@ a.link_button {
     border-radius: 3px;
 }
 
+a.link_button:hover{
+    cursor: pointer;
+}
+
 #arrow{
     display: none;
     position: absolute;
