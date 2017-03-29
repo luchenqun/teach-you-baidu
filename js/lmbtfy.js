@@ -18,6 +18,7 @@ $(document).ready(function() {
     $('#search').on('click', function() {
         if (teaching) {
             toastr.error('专心看教程！', "提示");
+            return;
         }
         var ky = $('#kw').val();
         if (ky) {
@@ -99,6 +100,7 @@ $(document).ready(function() {
 
                             setTimeout(function() {
                                 window.location = 'http://www.baidu.com/s?tn=mybookmark.cn&ch=3&ie=utf-8&wd=' + encodeURIComponent(kw);
+                                teaching = false;
                             }, 4000);
                         })
                     }
