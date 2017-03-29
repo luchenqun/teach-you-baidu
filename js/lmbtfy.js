@@ -85,11 +85,11 @@ $(document).ready(function() {
 
                             setTimeout(function() {
                                 $instructions.html("<strong style='color:#FF0000'>==========见证奇迹的时刻到了==========</strong>");
-                            }, 2000);
+                            }, 3000);
 
                             setTimeout(function() {
                                 window.location = 'http://www.baidu.com/s?tn=mybookmark.cn&ch=3&ie=utf-8&wd=' + encodeURIComponent(kw);
-                            }, 3000);
+                            }, 4000);
                         })
                     }
                 }, delay);
