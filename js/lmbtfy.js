@@ -24,13 +24,11 @@ $(document).ready(function() {
                 $.get('https://auth.bangbang93.com/sina/short_url.php?url=' + link, function(data) {
                     if (data) {
                         link = data['url_short'];
-                        $('#link').show();
-                        $('#instructions').text('复制下面的地址');
-                        $('#short_url').val(link).focus().select();
                         toastr.clear();
-                    } else {
-                        toastr.error('获取短地址出错。', "提示");
                     }
+                    $('#link').show();
+                    $('#instructions').text('复制下面的地址');
+                    $('#short_url').val(link).focus().select();
                 });
             }
         } else {
