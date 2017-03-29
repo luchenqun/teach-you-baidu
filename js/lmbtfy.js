@@ -79,15 +79,17 @@ $(document).ready(function() {
                             top: $search.offset().top + $search.height() / 2 + 'px'
                         };
                         $arrow.animate(styles, 1000, function() {
-                            $instructions.html('这对你而言就是这么困难么？');
-
                             setTimeout(function() {
-                                $instructions.html("<strong style='color:#FF0000'>==========见证奇迹的时刻到了==========</strong>");
+                                $instructions.html('这对你而言就是这么困难么？');
                             }, 1000);
 
                             setTimeout(function() {
-                                window.location = 'http://www.baidu.com/s?tn=mybookmark.cn&ch=3&ie=utf-8&wd=' + encodeURIComponent(kw);
+                                $instructions.html("<strong style='color:#FF0000'>==========见证奇迹的时刻到了==========</strong>");
                             }, 2000);
+
+                            setTimeout(function() {
+                                window.location = 'http://www.baidu.com/s?tn=mybookmark.cn&ch=3&ie=utf-8&wd=' + encodeURIComponent(kw);
+                            }, 3000);
                         })
                     }
                 }, delay);
