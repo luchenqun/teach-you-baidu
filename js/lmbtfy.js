@@ -16,6 +16,7 @@ $(document).ready(function() {
     });
 
     $('#search').on('click', function() {
+        console.log('teaching = ', teaching);
         if (teaching) {
             toastr.error('专心看教程！', "提示");
             return;
@@ -58,6 +59,7 @@ $(document).ready(function() {
     });
 
     if (!!window.location.search) {
+        console.log('window.location.search.........', teaching);
         teaching = true;
         var kw = decodeURIComponent(window.location.search.substr(1));
         var $instructions = $('#instructions');
