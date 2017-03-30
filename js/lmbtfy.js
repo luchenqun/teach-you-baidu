@@ -86,7 +86,6 @@ $(document).ready(function() {
                     if (i > kw.length) {
                         clearInterval(interval);
                         $instructions.text('3、按下“百度一下”按钮');
-                        $arrow.attr('src', '../img/pointer.png');
                         $arrow.show();
                         var $search = $('#search');
                         styles = {
@@ -94,6 +93,7 @@ $(document).ready(function() {
                             top: $search.offset().top + $search.height() / 2 + 'px'
                         };
                         $arrow.animate(styles, 1000, function() {
+                            $arrow.attr('src', '../img/pointer.png');
                             setTimeout(function() {
                                 $instructions.html('这对你而言就是这么困难么？');
                             }, 1000);
