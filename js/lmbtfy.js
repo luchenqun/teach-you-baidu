@@ -72,7 +72,7 @@ $(document).ready(function() {
                 left: $kw.offset().left + 10 + 'px',
                 top: ($kw.offset().top + $kw.height() / 2) + 'px'
             }
-
+            $arrow.attr('src', './img/arrow.png');
             $arrow.show().animate(styles, 2000, function() {
                 $instructions.text('2、输入你的问题');
                 $arrow.hide();
@@ -86,6 +86,7 @@ $(document).ready(function() {
                     if (i > kw.length) {
                         clearInterval(interval);
                         $instructions.text('3、按下“百度一下”按钮');
+                        $arrow.attr('src', './img/pointer.png');
                         $arrow.show();
                         var $search = $('#search');
                         styles = {
