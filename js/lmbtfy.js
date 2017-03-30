@@ -76,6 +76,7 @@ $(document).ready(function() {
             $arrow.show().animate(styles, 2000, function() {
                 $instructions.text('2、输入你的问题');
                 $arrow.hide();
+                $arrow.attr('src', './img/pointer.png');
                 var $kw = $('#kw');
                 $kw.focus();
                 var i = 0;
@@ -86,7 +87,6 @@ $(document).ready(function() {
                     if (i > kw.length) {
                         clearInterval(interval);
                         $instructions.text('3、按下“百度一下”按钮');
-                        $arrow.attr('src', './img/pointer.png');
                         $arrow.show();
                         var $search = $('#search');
                         styles = {
