@@ -28,7 +28,7 @@ $(document).ready(function() {
                 $('#kw').val('');
                 toastr.error('您输入的字符过长，请重新输入！', "提示");
             } else {
-                var link = 'http://let-me-teach-you-baidu.luchenqun.com/?' + encodeURIComponent(ky);
+                var link = 'http://baidu.luchenqun.com/?' + encodeURIComponent(ky);
                 $.get('https://auth.bangbang93.com/sina/short_url.php?url=' + link, function(data) {
                     if (data) {
                         link = data['url_short'];
