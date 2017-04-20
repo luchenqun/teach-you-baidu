@@ -24,20 +24,40 @@ $(document).ready(function() {
         }
         var ky = $('#kw').val();
         if (ky) {
-            if(ky.length >= 80){
+            if (ky.length >= 80) {
                 $('#kw').val('');
                 toastr.error('您输入的字符过长，请重新输入！', "提示");
             } else {
-                var link = 'http://baidu.luchenqun.com/?' + encodeURIComponent(ky);
-                $.get('https://auth.bangbang93.com/sina/short_url.php?url=' + link, function(data) {
-                    if (data) {
-                        link = data['url_short'];
-                        toastr.clear();
+                var link = 'https://auth.bangbang93.com/sina/short_url.php?url=' + 'http://baidu.luchenqun.com/?' + encodeURIComponent(ky);
+
+                $.ajax({
+                    url: link,
+                    success: function(data) {
+                        if (data) {
+                            link = data['url_short'];
+                            toastr.clear();
+                        }
+                        $('#link').show();
+                        $('#instructions').text('复制下面的地址');
+                        $('#short_url').val(link).focus().select();
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(XMLHttpRequest.status, XMLHttpRequest.responseText);
+                        $('#link').show();
+                        $('#instructions').text('复制下面的地址');
+                        $('#short_url').val(link).focus().select();
                     }
-                    $('#link').show();
-                    $('#instructions').text('复制下面的地址');
-                    $('#short_url').val(link).focus().select();
                 });
+
+                // $.get('https://auth.bangbang93.com/sina/short_url.php?url=' + link, function(data) {
+                //     if (data) {
+                //         link = data['url_short'];
+                //         toastr.clear();
+                //     }
+                //     $('#link').show();
+                //     $('#instructions').text('复制下面的地址');
+                //     $('#short_url').val(link).focus().select();
+                // });
             }
         } else {
             toastr.error('您要先输入搜索关键字！', "提示");
