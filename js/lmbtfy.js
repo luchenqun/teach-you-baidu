@@ -28,7 +28,8 @@ $(document).ready(function() {
                 $('#kw').val('');
                 toastr.error('您输入的字符过长，请重新输入！', "提示");
             } else {
-                var link = 'http://api.t.sina.com.cn/short_url/shorten.json?source=3271760578&url_long?url=' + 'http://baidu.luchenqun.com/?' + encodeURIComponent(ky);
+                var baidu = 'https://www.baidu.com/s?wd=?' + encodeURIComponent(ky);
+                var link = 'https://auth.bangbang93.com/sina/short_url.php?url=' + baidu;
 
                 $.ajax({
                     url: link,
@@ -45,9 +46,19 @@ $(document).ready(function() {
                         console.log(XMLHttpRequest.status, XMLHttpRequest.responseText);
                         $('#link').show();
                         $('#instructions').text('复制下面的地址');
-                        $('#short_url').val(link).focus().select();
+                        $('#short_url').val(baidu).focus().select();
                     }
                 });
+
+                // $.get('https://auth.bangbang93.com/sina/short_url.php?url=' + link, function(data) {
+                //     if (data) {
+                //         link = data['url_short'];
+                //         toastr.clear();
+                //     }
+                //     $('#link').show();
+                //     $('#instructions').text('复制下面的地址');
+                //     $('#short_url').val(link).focus().select();
+                // });
             }
         } else {
             toastr.error('您要先输入搜索关键字！', "提示");
