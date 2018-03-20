@@ -29,36 +29,26 @@ $(document).ready(function() {
                 toastr.error('您输入的字符过长，请重新输入！', "提示");
             } else {
                 var baidu = 'https://www.baidu.com/s?wd=?' + encodeURIComponent(ky);
-                var link = 'https://auth.bangbang93.com/sina/short_url.php?url=' + baidu;
-
-                $.ajax({
-                    url: link,
-                    success: function(data) {
-                        if (data) {
-                            link = data['url_short'];
+                var app_key = "211160679";
+                var url = "http://api.weibo.com/2/short_url/shorten.json?source=" + app_key + "&url_long=" + baidu;
+                $.ajax({ //底层方法；
+                    url: url,
+                    type: "GET",
+                    dataType: "jsonp", //使用JSONP方法进行AJAX,json有跨域问题；
+                    cache: false,
+                    success: function (ret, status) {
+                        if (ret) {
+                            link = ret.data.urls[0].url_short;
                             toastr.clear();
                         }
                         $('#link').show();
                         $('#instructions').text('复制下面的地址');
                         $('#short_url').val(link).focus().select();
                     },
-                    error: function(XMLHttpRequest, textStatus, errorThrown) {
-                        console.log(XMLHttpRequest.status, XMLHttpRequest.responseText);
-                        $('#link').show();
-                        $('#instructions').text('复制下面的地址');
-                        $('#short_url').val(baidu).focus().select();
+                    error: function (obj, info, errObj) {
+                        alert("$.ajax()中发生错误：" + info);
                     }
                 });
-
-                // $.get('https://auth.bangbang93.com/sina/short_url.php?url=' + link, function(data) {
-                //     if (data) {
-                //         link = data['url_short'];
-                //         toastr.clear();
-                //     }
-                //     $('#link').show();
-                //     $('#instructions').text('复制下面的地址');
-                //     $('#short_url').val(link).focus().select();
-                // });
             }
         } else {
             toastr.error('您要先输入搜索关键字！', "提示");
