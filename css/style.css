@@ -44,11 +44,11 @@
     background-color: #dcefff;
     border: 1px solid #b3b7ff;
     font-size: 1.1em;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-    border-radius: 10px;
+    /* -webkit-border-radius: 10px; */
+    /* -moz-border-radius: 10px; */
+    /* -ms-border-radius: 10px; */
+    /* -o-border-radius: 10px; */
+    /* border-radius: 10px; */
     background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #fff), color-stop(100%, rgba(255, 255, 255, 0)));
     background-image: -webkit-linear-gradient(#fff, rgba(255, 255, 255, 0) 100%);
     background-image: -moz-linear-gradient(#fff, rgba(255, 255, 255, 0) 100%);

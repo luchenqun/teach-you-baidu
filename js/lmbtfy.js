@@ -107,7 +107,8 @@ $(document).ready(function() {
                             top: $search.offset().top + $search.height() / 2 + 'px'
                         };
                         $arrow.animate(styles, 1000, function() {
-                            $arrow.attr('src', '../img/pointer.png');
+                            // $arrow.attr('src', '../img/pointer.png');
+                            $("#search").css("background-color","#63B8FF");
                             setTimeout(function() {
                                 $instructions.html('这对你而言就是这么困难么？');
                             }, 1000);
