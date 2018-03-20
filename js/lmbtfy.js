@@ -28,7 +28,7 @@ $(document).ready(function() {
                 $('#kw').val('');
                 toastr.error('您输入的字符过长，请重新输入！', "提示");
             } else {
-                var baidu = 'https://www.baidu.com/s?wd=?' + encodeURIComponent(ky);
+                var baidu = 'http://baidu.luchenqun.com/?' + encodeURIComponent(ky);
                 var app_key = "211160679";
                 var url = "http://api.weibo.com/2/short_url/shorten.json?source=" + app_key + "&url_long=" + baidu;
                 $.ajax({ //底层方法；
@@ -71,11 +71,14 @@ $(document).ready(function() {
     });
 
     if (!!window.location.search) {
-        console.log('window.location.search.........', teaching);
+
         teaching = true;
         var kw = decodeURIComponent(window.location.search.substr(1));
         var $instructions = $('#instructions');
         var $arrow = $('#arrow');
+
+        console.log('window.location.search.........', kw);
+
         setTimeout(function() {
 
             $instructions.text('1、把鼠标放到输入框上');
