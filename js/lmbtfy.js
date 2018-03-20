@@ -114,7 +114,7 @@ $(document).ready(function() {
                             }, 1000);
 
                             setTimeout(function() {
-                                $instructions.html("<strong style='color:#FF0000'>==========见证奇迹的时刻到了==========</strong>");
+                                $instructions.html("<strong style='color:#FF0000'>--------- 见证奇迹的时刻到了 ---------</strong>");
                             }, 3000);
 
                             setTimeout(function() {
