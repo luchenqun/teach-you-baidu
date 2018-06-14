@@ -10,6 +10,7 @@
     <meta property="og:site_name" content="需要我帮你百度么">
     <meta property="og:description" content="需要我帮你百度么">
     <meta property="og:title" content="需要我帮你百度么">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     <meta property="og:type" content="webpage">
     <title>让我教你百度！</title>
     <link rel="shortcut icon" href="./favicon.ico" />
@@ -22,15 +23,17 @@
     <img src="./img/arrow.png" id="arrow" />
     <div class="container">
         <div>
-            <h1><img src="./img/baidu_logo.png" class="logo" alt="百度" /></h1>
-            <input type="text" class="search-text" id="kw" placeholder="让我教你如何百度！" >
+            <h1>
+                <img src="./img/baidu_logo.png" class="logo" alt="百度" />
+            </h1>
+            <input type="text" class="search-text" id="kw" placeholder="让我教你如何百度！">
             <button class="btn" id="search">百度一下</button>
         </div>
         <div id="instructions">
             输入一个问题，然后按百度一下
         </div>
         <div class="link" style="display: none" id="link">
-            <input type="text" readonly id="short_url" class="copyable"/>
+            <input type="text" readonly id="short_url" class="copyable" />
             <a class="link_button" id="copy" data-clipboard-target="#short_url">复制</a>
             <a class="link_button" id="go">预览</a>
         </div>
@@ -45,6 +48,20 @@
 <script src="./js/jquery.min.js"></script>
 <script src="./js/toastr.min.js"></script>
 <script src="./js/lmbtfy.js"></script>
+<script>
+    $(function () {
+        var u = navigator.userAgent;
+        var device = { //移动终端浏览器版本信息
+            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        };
+        if (!device.mobile) return;
+        $("#kw").css("width", "70%");
+        $("#search").css("width", "25%");
+        // $("#instructions").css("width", "90%");
+
+    });
+
+</script>
 <!-- <script count="250" color="255,0,0" src="./js/canvas-nest.min.js"></script> -->
 
 </html>
