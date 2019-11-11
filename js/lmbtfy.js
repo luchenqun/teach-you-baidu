@@ -1,21 +1,21 @@
 /**
  * Created by bangbang on 14/10/10.
  */
-$(document).ready(function() {
+$(document).ready(function () {
     var teaching = false;
 
     var clipboard = new Clipboard('#copy');
-    clipboard.on('success', function(e) {
+    clipboard.on('success', function (e) {
         toastr.success('短地址：' + e.text + '<br/>已复制到您的剪切板', "提示");
         $('#short_url').val(e.text).focus().select();
         e.clearSelection();
     });
 
-    clipboard.on('error', function(e) {
+    clipboard.on('error', function (e) {
         toastr.error('复制失败，请手动复制！', "提示");
     });
 
-    $('#search').on('click', function() {
+    $('#search').on('click', function () {
         console.log('teaching = ', teaching);
         if (teaching) {
             toastr.clear();
@@ -29,24 +29,28 @@ $(document).ready(function() {
                 toastr.error('您输入的字符过长，请重新输入！', "提示");
             } else {
                 var baidu = 'http://baidu.luchenqun.com/?' + encodeURIComponent(ky);
-                var app_key = "211160679";
-                var url = "http://api.weibo.com/2/short_url/shorten.json?source=" + app_key + "&url_long=" + baidu;
+                var url = "https://api.uomg.com/api/long2dwz?dwzapi=urlcn&url=" + baidu;
                 $.ajax({ //底层方法；
                     url: url,
                     type: "GET",
-                    dataType: "jsonp", //使用JSONP方法进行AJAX,json有跨域问题；
+                    //dataType: "jsonp", //使用JSONP方法进行AJAX,json有跨域问题；
                     cache: false,
                     success: function (ret, status) {
-                        if (ret) {
-                            link = ret.data.urls[0].url_short;
+                        ret = JSON.parse(ret);
+                        if (ret.ae_url) {
+                            link = ret.ae_url;
                             toastr.clear();
+                            $('#link').show();
+                            $('#instructions').text('复制下面的地址');
+                            $('#short_url').val(link).focus().select();
+                        } else {
+                            toastr.error('ajax 获取短地址结果错误！', "提示");
+                            console.log(ret)
                         }
-                        $('#link').show();
-                        $('#instructions').text('复制下面的地址');
-                        $('#short_url').val(link).focus().select();
                     },
                     error: function (obj, info, errObj) {
-                        alert("$.ajax()中发生错误：" + info);
+                        console.log(obj, info, errObj);
+                        toastr.error('ajax 获取短地址get错误！', "提示");
                     }
                 });
             }
@@ -56,7 +60,7 @@ $(document).ready(function() {
     });
 
     var $container = $('.container');
-    $container.on('click', '#go', function() {
+    $container.on('click', '#go', function () {
         var link = $('#short_url').val();
         if (!!link) {
             window.location = link;
@@ -64,7 +68,7 @@ $(document).ready(function() {
     });
 
     var $kw = $('#kw');
-    $kw.on('keydown', function(e) {
+    $kw.on('keydown', function (e) {
         if (e.keyCode == 13) {
             $('#search').trigger('click');
         }
@@ -79,7 +83,7 @@ $(document).ready(function() {
 
         console.log('window.location.search.........', kw);
 
-        setTimeout(function() {
+        setTimeout(function () {
 
             $instructions.text('1、把鼠标放到输入框上');
             var styles = {
@@ -87,7 +91,7 @@ $(document).ready(function() {
                 top: ($kw.offset().top + $kw.height() / 2) + 'px'
             }
             $arrow.attr('src', '../img/arrow.png');
-            $arrow.show().animate(styles, 2000, function() {
+            $arrow.show().animate(styles, 2000, function () {
                 $instructions.text('2、输入你的问题');
                 $arrow.hide();
                 var $kw = $('#kw');
@@ -95,7 +99,7 @@ $(document).ready(function() {
                 var i = 0;
                 var delay = (kw.length >= 40) ? 100 : 200;
 
-                var interval = setInterval(function() {
+                var interval = setInterval(function () {
                     $kw.val(kw.substr(0, i++));
                     if (i > kw.length) {
                         clearInterval(interval);
@@ -106,18 +110,18 @@ $(document).ready(function() {
                             left: $search.offset().left + $search.width() / 2 + 'px',
                             top: $search.offset().top + $search.height() / 2 + 'px'
                         };
-                        $arrow.animate(styles, 1000, function() {
+                        $arrow.animate(styles, 1000, function () {
                             // $arrow.attr('src', '../img/pointer.png');
-                            $("#search").css("background-color","#63B8FF");
-                            setTimeout(function() {
+                            $("#search").css("background-color", "#63B8FF");
+                            setTimeout(function () {
                                 $instructions.html('这对你而言就是这么困难么？');
                             }, 1000);
 
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 $instructions.html("<strong style='color:#FF0000'>--------- 见证奇迹的时刻到了 ---------</strong>");
                             }, 3000);
 
-                            setTimeout(function() {
+                            setTimeout(function () {
                                 window.location = 'http://www.baidu.com/s?tn=mybookmark.cn&ch=3&ie=utf-8&wd=' + encodeURIComponent(kw);
                                 teaching = false;
                             }, 4000);
