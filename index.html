@@ -1,63 +1,66 @@
 <!DOCTYPE html>
-<html>
-  <head lang="cn">
-    <meta charset="UFT-8" />
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="keywords" content="lmbtfy,百度,需要我帮你百度吗,需要我帮你百度么,不会百度" />
-    <meta name="description" content="需要我帮你百度么" />
-    <meta property="og:site_name" content="需要我帮你百度么" />
-    <meta property="og:description" content="需要我帮你百度么" />
-    <meta property="og:title" content="需要我帮你百度么" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui" />
-    <meta property="og:type" content="webpage" />
-    <title>让我教你百度！</title>
-    <link rel="shortcut icon" href="./favicon.ico" />
-    <link rel="bookmark" href="./favicon.ico" />
-    <link href="./css/style.css" rel="stylesheet" type="text/css" />
-    <link href="./css/toastr.min.css" rel="stylesheet" type="text/css" />
-  </head>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <title>让我帮你百度一下 | Let Me Baidu That For You</title>
+
+    <link rel="shortcut icon" href="favicon.ico" />
+    <link rel="stylesheet" href="css/style.css" />
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/base64.min.js"></script>
+    <script src="js/clipboard.min.js"></script>
+    <script src="js/script.js"></script>
+  </head>
   <body>
-    <img src="./img/arrow.png" id="arrow" />
-    <div class="container">
-      <div>
-        <h1>
-          <img src="./img/baidu_logo.png" class="logo" alt="百度" />
-        </h1>
-        <input type="text" class="search-text" id="kw" placeholder="让我教你如何百度！" />
-        <button class="btn" id="search">百度一下</button>
+    <section id="search">
+      <div class="search-header">
+        <h2>
+          <!-- <span class="let-me">让我帮你</span>  -->
+          <img src="img/baidu_logo.png" alt="百度" title="让我帮你百度一下" />
+          <!-- <span class="for-you">一下</span> -->
+        </h2>
       </div>
-      <div id="instructions">
-        输入一个问题，然后按百度一下
+
+      <form id="search-form">
+        <div class="search-form-group">
+          <div class="search-form-input">
+            <input type="search" id="kw" maxlength="255" autocomplete="off" required />
+          </div>
+          <button id="search-submit">百度一下</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="function">
+      <p id="tips">输入一个问题，然后点击百度一下</p>
+      <!-- <button id="stop">快停下！我是自己人</button> -->
+      <div id="output">
+        <textarea id="url-output" rows="3" readonly></textarea>
+        <div class="tool-btns">
+          <button data-clipboard-target="#url-output">复制</button>
+          <button id="preview">预览</button>
+        </div>
       </div>
-      <div class="link" style="display: none;" id="link">
-        <input type="text" readonly id="short_url" class="copyable" />
-        <a class="link_button" id="copy" data-clipboard-target="#short_url">复制</a>
-        <a class="link_button" id="go">预览</a>
-      </div>
-    </div>
-    <footer>
-      <a href="http://luchenqun.com/" target="_blank">Made By @LCQ</a> &nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; <a href="https://github.com/luchenqun/TeachYouBaidu" target="_blank"> 源代码 </a>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="http://mybookmark.cn/" target="_blank"> 我的书签 </a>
+    </section>
+
+    <footer id="footer">
+      <ul class="footer-left">
+        <li><a href="https://github.com/luchenqun/TeachYouBaidu" target="_blank">源码下载</a></li>
+        <li><a href="http://b.lucq.fun/" target="_blank">我的书签</a></li>
+      </ul>
+
+      <ul class="footer-right">
+        <li>* 本站与百度公司没有任何联系，baidu 以及本站出现的百度公司 Logo 是百度公司的商标</li>
+      </ul>
     </footer>
+
+    <div id="arrow"></div>
   </body>
-  <script src="./js/clipboard.min.js"></script>
-  <script src="./js/jquery.min.js"></script>
-  <script src="./js/toastr.min.js"></script>
-  <script src="./js/lmbtfy.js"></script>
-  <script>
-    $(function () {
-      var u = navigator.userAgent;
-      var device = {
-        //移动终端浏览器版本信息
-        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
-      };
-      if (!device.mobile) return;
-      $("#kw").css("width", "70%");
-      $("#search").css("width", "25%");
-      $(".container").css("margin-top", "20px");
-    });
-  </script>
-  <!-- <script count="250" color="255,0,0" src="./js/canvas-nest.min.js"></script> -->
 </html>
