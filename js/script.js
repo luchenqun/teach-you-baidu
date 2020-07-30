@@ -114,7 +114,7 @@ $(function () {
         cache: false,
         success: function (ret) {
           if (ret.code == 200) {
-            $urlOutput.val(ret.data.short_url).focus().select();
+            $urlOutput.val(baidu).focus().select();
           } else {
             $urlOutput.val(baidu).focus().select();
           }
